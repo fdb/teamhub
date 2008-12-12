@@ -1,0 +1,36 @@
+{% extends "base_journal.html" %}
+{% load typogrify %}
+{% block title %}Journal{% endblock %}
+{% block breadcrumbs %}{{ block.super }}  &rarr; Journal{% endblock %}
+{% block content %}
+{% include "journal/_entry_form.html" %}
+
+{% regroup entry_list by created.day as entry_dated_list %}
+{% for date in entry_dated_list %}
+    <div class="datespec">{{ date.list.0.created|date:"l j N" }}</div>
+    {% for entry in date.list %}
+    <div class="entry">
+    <span class="user">{{ entry.user.first_name }}:</span>
+    <span class="content">{{ entry.content|typogrify }}</span>
+    <span class="date">&mdash; {{ entry.created|date:"G:i" }}</span>
+    </div>
+    {% endfor %}
+{% endfor %}
+<script type="text/javascript">
+document.getElementById('id_content').focus();
+</script>
+{% endblock %}
+
+{% block content-related %}
+{% regroup latest_entries_by_user by user  as entry_list %}
+{% for user in entry_list %}
+<h4>{{ user.grouper.first_name }}</h4>
+<ul>
+    {% for entry in user.list %}
+    <li class="entry">
+        <span class="content">{{ entry.entry.content|truncatewords:10|typogrify }}</span>
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}
+{% endblock %}

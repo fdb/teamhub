@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<title>{{ SITE_NAME }} | Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="imagetoolbar" content="no">
+	<meta name="MSSmartTagsPreventParsing" content="true">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/base.css" type="text/css">
+	<meta name="description" content="{{ SITE_DESCRIPTION }}" />
+</head>
+<body id="login">
+<div id="wrap">
+<div id="header">
+<div id="logo"><a href="/"><img src="{{ MEDIA_URL }}/img/logo.png" alt="{{ SITE_NAME }} logo"></a></div>
+</div> <!-- END #header -->
+<div id="main">
+<h1>Login</h1>
+<div id="columnwrap">
+	<div id="content-main">
+{% if form.has_errors %}
+<p class="error">Your username and password didn't match. Please try again. Did you <a href="/accounts/forgot/">Forgot them</a>?</p>
+{% endif %}
+<form method="post" action=".">
+<table class="table-form" cellspacing="0" cellpadding="0">
+<tr><td><label for="id_username">Username:</label></td><td>{{ form.username }}</td></tr>
+<tr><td><label for="id_password">Password:</label></td><td>{{ form.password }}</td></tr>
+<tr><td></td><td><input type="submit" value="login" /><input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}/{% endif %}" /></td></tr>
+</table>
+</form>
+<script type="text/javascript">document.getElementsByTagName('form')[0].getElementsByTagName('input')[0].focus();</script>
+
+	</div>
+</div> <!-- END #columnwrap -->
+</div> <!-- END #main -->
+<p id="footer">A Teamhub website. Valid <a href="http://validator.w3.org/check?uri=referer">HTML</a> and <a href="http://jigsaw.w3.org/css-validator/">
+CSS</a>.</p>
+</div> <!-- END #wrap -->
+</body>
+</html>
+
