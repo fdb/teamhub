@@ -1,1 +1,2 @@
-{{ obj.user.first_name }}: {{ obj.content|truncatewords:10 }}
+{% load typogrify %}
+{{ obj.user.first_name }}: {{ obj.content|urlizetrunc:20|truncatewords:10|typogrify }}

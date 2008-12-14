@@ -1,1 +1,2 @@
-<strong>{{ obj.user.first_name }}</strong>: {{ obj.content }}
+{% load typogrify %}
+<strong>{{ obj.user.first_name }}</strong>: {{ obj.content|urlizetrunc:40|typogrify }}

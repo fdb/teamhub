@@ -11,7 +11,7 @@
     {% for entry in date.list %}
     <div class="entry">
     <span class="user">{{ entry.user.first_name }}:</span>
-    <span class="content">{{ entry.content|typogrify }}</span>
+    <span class="content">{{ entry.content|urlizetrunc:40|typogrify }}</span>
     <span class="date">&mdash; {{ entry.created|date:"G:i" }}</span>
     </div>
     {% endfor %}
@@ -28,7 +28,7 @@ document.getElementById('id_content').focus();
 <ul>
     {% for entry in user.list %}
     <li class="entry">
-        <span class="content">{{ entry.entry.content|truncatewords:10|typogrify }}</span>
+        <span class="content">{{ entry.entry.content|urlizetrunc:40|truncatewords:10|typogrify }}</span>
     </li>
     {% endfor %}
 </ul>
